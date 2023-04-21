@@ -1,14 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Button,
-  Alert,
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Audio } from "expo-av";
-import * as MediaLibrary from "expo-media-library";
+import { Fontisto } from "@expo/vector-icons";
 
 export default function PageMicro() {
   const [recording, setRecording] = useState(null);
@@ -92,15 +85,36 @@ export default function PageMicro() {
 
       {audioUri && !recording && (
         <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            onPress={isPlaying ? stopAudio : playAudio}
-            style={styles.button}
-          >
-            <Text style={styles.text}>
-              {isPlaying ? "Stop Audio" : "Play Audio"}{" "}
+          <View style={{ alignItems: "center" }}>
+            <Text style={styles.labelPathText}>
+              Chemin du dernier audio enregistrer{" "}
             </Text>
-          </TouchableOpacity>
-          <Text style={styles.pathText}>{audioUri}</Text>
+            <Text style={styles.pathText}> {audioUri}</Text>
+          </View>
+          <View
+            style={{
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Fontisto name="arrow-down-l" size={48} color="black" />
+          </View>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <TouchableOpacity
+              onPress={isPlaying ? stopAudio : playAudio}
+              style={styles.button}
+            >
+              <Text style={styles.text}>
+                {isPlaying ? "Stop Audio" : "Playback Audio"}{" "}
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       )}
     </View>
@@ -114,8 +128,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   buttonContainer: {
-    flexDirection: "row",
+    flexDirection: "column",
     margin: 20,
+    justifyContent: "center",
   },
   button: {
     marginHorizontal: 20,
@@ -132,5 +147,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: "#555",
     fontSize: 12,
+  },
+  labelPathText: {
+    color: "black",
+    fontSize: 18,
+    textAlign: "justify",
   },
 });

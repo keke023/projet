@@ -5,17 +5,10 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import PageMicro from "./Micro";
-import React, { useState, useRef, useIsFocused } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Button,
-  Alert,
-} from "react-native";
+import React, { useState, useRef } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import * as MediaLibrary from "expo-media-library";
-import { Audio } from "expo-av";
+
 import PageHome from "./Home";
 
 export default function App() {
@@ -28,10 +21,10 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator initialRouteName="Home">
         <Tab.Screen
-          name="Home"
+          name="Permission"
           component={PageHome}
           options={{
-            tabBarIcon: ({ size, focused, color }) => (
+            tabBarIcon: ({ size, color }) => (
               <Ionicons name="home" size={size} color={color} />
             ),
           }}
@@ -40,7 +33,7 @@ export default function App() {
           name="Camera"
           component={PageCamera}
           options={{
-            tabBarIcon: ({ size, focused, color }) => (
+            tabBarIcon: () => (
               <AntDesign name="camera" size={24} color="black" />
             ),
           }}
@@ -49,7 +42,7 @@ export default function App() {
           name="Micro"
           component={PageMicro}
           options={{
-            tabBarIcon: ({ size, focused, color }) => (
+            tabBarIcon: () => (
               <FontAwesome name="microphone" size={24} color="black" />
             ),
           }}
@@ -138,18 +131,3 @@ const PageCamera = ({ navigation }) => {
     </View>
   );
 };
-/*const PageHome = ({ navigation }) => {
-  return (
-    <View>
-      <Text>Home</Text>
-    </View>
-  );
-};
-const PageMicro = ({ navigation }) => {
-  return (
-    <View>
-      <Text>Home</Text>
-    </View>
-  );
-};
-*/
